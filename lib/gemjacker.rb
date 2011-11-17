@@ -1,0 +1,1 @@
+class GemJacker; end
