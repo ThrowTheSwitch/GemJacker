@@ -1,6 +1,15 @@
 require 'rbconfig'
 
 module GemJacker
+  # Push the configured path out to the system. By default, inherit
+  # the system path and set its priority level to 0.
+  def self.deploy(inherit_sys=true, sys_level=0)
+    if inherit_sys
+      GemJacker::ExecutablePaths.inherit_sys_path(sys_level)
+    end
+    GemJacker::ExecutablePaths.replace_sys_path
+  end
+
   class ExecutablePaths
     def self.sys_path_sep
       if /mswin|mingw/.match(RbConfig::CONFIG['host_os'])
