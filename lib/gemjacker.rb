@@ -11,6 +11,8 @@ module GemJacker
   end
 
   class ExecutablePaths
+    @@original_sys_path = nil
+
     def self.sys_path_sep
       if /mswin|mingw/.match(RbConfig::CONFIG['host_os'])
         ';'
